@@ -1,0 +1,123 @@
+// @use './mixins/mixins.scss' as *;
+@use "./common/var.scss" as *;
+
+// @include b(button) {
+//   align-items: center;
+//   display: inline-flex;
+//   cursor: pointer;
+//   outline: none;
+//   border: #fafafa;
+//   border-radius: 5px;
+//   user-select: none;
+//   min-height: 40px;
+//   line-height: 1;
+//   vertical-align: middle;
+//   padding: 0 20px;
+// }
+
+// @include m(medium) {
+//   padding: 0 20px;
+// }
+
+// @include m(small) {
+//   padding: 0 18px;
+// }
+
+// @include m(large) {
+//   padding: 0 25px;
+// }
+
+// @include when(disabled) {
+//   // 针对不同类型处理
+//   &,
+//   &:hover,
+//   &:focus {
+//     cursor: not-allowed;
+//   }
+// }
+
+// @include when(round) {
+//   border-radius: 20px;
+// }
+
+// @include m(primary) {
+//   // 渲染不同类型的button
+//   @include button-variant($color-white,$color-primary,$color-primary)
+// }
+
+// @include m(success) {
+//   // 渲染不同类型的button
+//   @include button-variant($color-white,$color-success,$color-success)
+// }
+// @include m(warning) {
+//   // 渲染不同类型的button
+//   @include button-variant($color-white,$color-warning,$color-warning)
+// }
+// @include m(danger) {
+//   // 渲染不同类型的button
+//   @include button-variant($color-white,$color-danger,$color-danger)
+// }
+// @include m(info) {
+//   // 渲染不同类型的button
+//   @include button-variant($color-white,$color-info,$color-info)
+// }
+.v-button {
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+  outline: none;
+  border: #fafafa;
+  border-radius: 5px;
+  user-select: none;
+  min-height: 40px;
+  line-height: 1;
+  vertical-align: middle;
+  padding: 0 20px;
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+      border-color: transparent;
+      opacity: .5;
+    }
+  }
+  &.is-round {
+    border-radius: 20px;
+  }
+}
+.v-button--primary {
+  color: $color-white;
+  background-color: $color-primary;
+  border-color: $color-primary;
+}
+.v-button--success {
+  color: $color-white;
+  background-color: $color-success;
+  border-color: $color-success;
+}
+.v-button--warning {
+  color: $color-white;
+  background-color: $color-warning;
+  border-color: $color-warning;
+}
+.v-button--danger {
+  color: $color-white;
+  background-color: $color-danger;
+  border-color: $color-danger;
+}
+.v-button--info {
+  color: $color-white;
+  background-color: $color-info;
+  border-color: $color-info;
+}
+.v-button--small {
+  padding: 0 18px;
+}
+.v-button--medium {
+  padding: 0 20px;
+}
+.v-button--large {
+  padding: 0 25px;
+}
+
