@@ -2,7 +2,7 @@
 import { ArrowForwardCircle } from '@vicons/ionicons5'
 import { ref } from 'vue'
 const handleClick = ((e: MouseEvent) => {
-  console.log(e);
+  // console.log(e);
 })
 
 const username = ref('e')
