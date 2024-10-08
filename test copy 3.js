@@ -1,1 +1,0 @@
-console.log('lj.daiban.p.privacy.sign');
