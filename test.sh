@@ -11,8 +11,6 @@ const dubbo = new Dubbo.default({
   env: 'stable',
 })
 
-
-
 exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
   if (error) {
     console.error(`执行错误: ${error}`);
@@ -32,11 +30,7 @@ exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
 
     const matches = diff.match(interfaceRegex) || [];
     const uniqueMatches = [...new Set(matches)];
-
-    console.log("final:", uniqueMatches.join(', '));
-
-  
-
+    console.log('hahaha', matches,uniqueMatches)
     process.exit(1);
   });
 });

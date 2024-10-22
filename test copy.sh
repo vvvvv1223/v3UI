@@ -2,7 +2,7 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { Dubbo, java } = require('apache-dubbo-js');
+const Dubbo = require('@didi/nodex-dubbo')
 
 const dubbo = new Dubbo.default({
   zk: {
@@ -35,15 +35,7 @@ exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
 
     console.log("final:", uniqueMatches.join(', '));
 
-    // 调用 Dubbo 接口
-    uniqueMatches.forEach((match) => {
-      // 假设 match 是接口的完整路径，您需要根据实际情况解析接口名称和参数
-      demoService.sayHello('World', 30).then(res => {
-        console.log(`Dubbo 接口响应: ${res}`);
-      }).catch(err => {
-        console.error(`调用 Dubbo 接口出错: ${err}`);
-      });
-    });
+  
 
     process.exit(1);
   });
