@@ -16,6 +16,7 @@ exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
     console.error(`执行错误: ${error}`);
     return;
   }
+  console.log('333',stdout)
   const currentBranch = stdout.trim();
   console.log(`当前分支名: ${currentBranch}`);
 

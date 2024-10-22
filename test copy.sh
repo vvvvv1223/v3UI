@@ -11,6 +11,23 @@ const dubbo = new Dubbo.default({
   env: 'stable',
 })
 
+function xx() {
+  dubbo.connectMethod({
+    path: 'com.didichuxing.framework.datacenter.api.service.KopApiService',
+    method: 'queryDetail',
+    args: [
+      dubbo.java('java.lang.String', 'hm.b.getExtFrontContentByType'),
+      dubbo.java('java.lang.String', '1.0.0'),
+
+    ]
+  }).then(function (result) {
+    console.log(result);
+      // do success
+  }, function (err) {
+      // do fail
+      console.log('fail',err);
+  })
+}
 
 
 exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
