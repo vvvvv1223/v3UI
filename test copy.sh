@@ -1,22 +1,50 @@
-#!/bin/bash
+#!/usr/bin/env node
+const { exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const { Dubbo, java } = require('apache-dubbo-js');
 
-# 获取当前分支名
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-echo "当前分支名: $CURRENT_BRANCH"
+const dubbo = new Dubbo.default({
+  zk: {
+    host: '10.78.128.20:10010'
+  },
+  env: 'stable',
+})
 
-# 定义接口匹配的正则表达式
-# 修改正则表达式以匹配以点号结尾的字符串
-REGEX="\w+\.\w+((?:\.\w+)*)"
 
-# 初始化一个空数组
-matched_strings=()
 
-# 使用grep搜索符合正则表达式的字符串
-echo "正在搜索文件: $file_to_check"
-grep -Eo "$REGEX" "$file_to_check" | while IFS= read -r line; do
-    # 将匹配的字符串添加到数组中
-    matched_strings+=("$line")
-    echo "匹配到的字符串: $line"
+exec('git rev-parse --abbrev-ref HEAD', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`执行错误: ${error}`);
+    return;
+  }
+  const currentBranch = stdout.trim();
+  console.log(`当前分支名: ${currentBranch}`);
 
-    echo "Matched strings: ${matched_strings[*]}"
-done
+  const interfaceRegex = /lj\.\w+\.\w+\.\w+\.\w+/g;
+
+  exec('git diff --cached --diff-filter=A origin/main', (error, diff, stderr) => {
+    if (error) {
+      console.error(`执行错误: ${error}`);
+      return;
+    }
+    console.log(`比对获取到的差异代码：`, diff);
+
+    const matches = diff.match(interfaceRegex) || [];
+    const uniqueMatches = [...new Set(matches)];
+
+    console.log("final:", uniqueMatches.join(', '));
+
+    // 调用 Dubbo 接口
+    uniqueMatches.forEach((match) => {
+      // 假设 match 是接口的完整路径，您需要根据实际情况解析接口名称和参数
+      demoService.sayHello('World', 30).then(res => {
+        console.log(`Dubbo 接口响应: ${res}`);
+      }).catch(err => {
+        console.error(`调用 Dubbo 接口出错: ${err}`);
+      });
+    });
+
+    process.exit(1);
+  });
+});
