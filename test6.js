@@ -195,7 +195,6 @@ export default {
                 "bpmJumpUrl": "xx",  // 数据处于待审批状态下，对应的审批链接
                 "gmtCreate": "2024-05-23 00:00:00",  // 创建时间
                 "gmtModify": "2024-05-23 00:00:00",  // 修改时间
-                "lj.bs.config.enumeration.xx":0
             }
         }
     }
