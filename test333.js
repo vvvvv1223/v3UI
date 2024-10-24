@@ -1,7 +1,7 @@
 const offMock = true
 export default {
     // 枚举查询
-    'lj.bs.config.enumeration.query': {
+    'lj.aa.bb.enumeration.query': {
         offMock,
         mock: function () {
             return {
